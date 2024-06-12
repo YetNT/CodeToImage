@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Text to Image Converter</title>
+        <style>
+            canvas {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Text to Image Converter</h1>
+        <textarea
+            id="textInput"
+            rows="4"
+            cols="50"
+            placeholder="Enter your text here..."
+        ></textarea
+        ><br />
+        <label for="pixelSize">Pixel Size:</label>
+        <input type="number" id="pixelSize" value="1" min="1" /><br />
+        <button onclick="convertTextToImage()">Convert to Image</button>
+        <canvas id="myCanvas"></canvas>
+        <br />
+        <button
+            id="downloadButton"
+            style="display: none"
+            onclick="downloadImage()"
+        >
+            Download Image
+        </button>
+        <script src="script.js"></script>
+    </body>
+</html>
