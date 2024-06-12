@@ -99,11 +99,13 @@ const arr = [
 ];
 
 const obj = {};
-const div = Math.ceil(Number("0xFFFFFF") / arr.length);
+const div = Math.floor(Number("0xFFFFFF") / arr.length);
 let current = 0;
 arr.forEach((v, i) => {
-    obj[v] = "#" + (current + div).toString(16);
-    current += div;
+    let ans = current + div;
+    let ansString = ans.toString(16);
+    obj[v] = "#" + (ansString.length == 5 ? "0" + ansString : ansString);
+    current = ans;
 });
 
 console.log(obj);
