@@ -11,6 +11,7 @@
         </style>
     </head>
     <body>
+        <script defer src="script.js"></script>
         <h1>Text to Image Converter</h1>
         <textarea
             id="textInput"
@@ -21,16 +22,25 @@
         ><br />
         <label for="pixelSize">Pixel Size:</label>
         <input type="number" id="pixelSize" value="1" min="1" /><br />
-        <button onclick="convertTextToImage()">Convert to Image</button>
-        <canvas id="myCanvas"></canvas>
-        <br />
+        <input
+            type="checkbox"
+            id="old"
+            name="Include Old Version"
+            value="Bike"
+        />
+        <label for="old"
+            >Include Old Version (Some colours may not be unique) </label
+        ><br />
+        <button onclick="run()">Convert to Image</button>
         <button
             id="downloadButton"
             style="display: none"
             onclick="downloadImage()"
         >
-            Download Image
-        </button>
-        <script src="script.js"></script>
+            Download Image</button
+        ><br />
+        <canvas id="myCanvas"></canvas>
+        <canvas id="myCanvas2"></canvas>
+        <br />
     </body>
 </html>

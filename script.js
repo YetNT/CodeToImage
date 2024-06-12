@@ -196,12 +196,18 @@ const colorTable = {
     "\n": "#FFFFFF",
 };
 
-function convertTextToImage() {
+/**
+ * @type {boolean}
+ */
+
+function convertTextToImage(colorTable, canvasId, v) {
     const text = document.getElementById("textInput").value;
     const pixelSize = parseInt(document.getElementById("pixelSize").value);
-    const canvas = document.getElementById("myCanvas");
+    const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext("2d");
-    const width = Math.floor(window.innerWidth / pixelSize);
+    const width = !v
+        ? Math.floor(window.innerWidth / pixelSize)
+        : Math.floor(Math.floor(window.innerWidth / pixelSize) / 2);
 
     // Calculate required canvas height
     const lines = text.split("\n");
@@ -240,10 +246,29 @@ function convertTextToImage() {
     document.getElementById("downloadButton").style.display = "inline";
 }
 
+function run() {
+    var v = document.getElementById("old").checked;
+    console.log(v);
+
+    convertTextToImage(colorTable, "myCanvas", v);
+    if (v) {
+        convertTextToImage(colorTable2, "myCanvas2", v);
+    }
+}
+
 function downloadImage() {
-    const canvas = document.getElementById("myCanvas");
+    var v = (document.getElementById("old").checked = true);
+
+    const canvas1 = document.getElementById("myCanvas");
+    const canvas2 = document.getElementById("myCanvas2");
     const link = document.createElement("a");
-    link.download = "text_image.png";
-    link.href = canvas.toDataURL("image/png");
+    const link2 = document.createElement("a");
+    link.download = "c2i.png";
+    link.href = canvas1.toDataURL("image/png");
     link.click();
+    if (v) {
+        link2.download = "c2i-old.png";
+        link2.href = canvas2.toDataURL("image/png");
+        link2.click();
+    }
 }
